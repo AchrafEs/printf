@@ -18,18 +18,18 @@ int _printf(const char *format, ...)
 	va_start(args, format);
 	while (*format != '\0')
 	{
-		if (*format[i] == '%')
+		if (*format == '%')
 		{
 			format++;
 			switch (*format)
 			{
 				case 'c':
-					c = va_arg(args1, int);
+					c = va_arg(args, int);
 					write(1, &c, 1);
 					count++;
 					break;
 				case 's':
-					*str = va_arg(args1, const char *);
+					str = va_arg(args, char *);
 					while (*str != '\0')
 					{
 						write(1, str, 1);
