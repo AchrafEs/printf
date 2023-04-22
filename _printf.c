@@ -28,32 +28,32 @@ int _printf(const char *format, ...)
 			{
 				case 'c':
 					c = va_arg(args1, int);
-					write(STDOUT_FILENO, &c, sizeof(c));
+					putchar(c);
 					num_chars++;
 					break;
 				case 's':
 					*str = va_arg(args1, const char *);
-					len = strlen(str);
-					write(STDOUT_FILENO, str, len);
-					num_chars += len;
+					while (*str != '\0')
+					{
+						putchar(*str);
+						str++;
+						num_chars++;
+					}
 					break;
 				case '%':
 					c = '%';
-					write(STDOUT_FILENO, &c, sizeof(c));
+					putchar('%');
 					num_chars++;
 					break;
 				default:
-					c = '%';
-					write(STDOUT_FILENO, &c, sizeof(c));
-					write(STDOUT_FILENO, &format[i], sizeof(format[i]));
-					num_chars += 2;
+					putchar('%');
+					num_chars++;
 					break;
 			}
 		}
 		else
 		{
-			c = format[i];
-			write(STDOUT_FILENO, &c, sizeof(c));
+			putchar(format[i]);
 			num_chars++;
 		}
 	}
