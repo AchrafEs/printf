@@ -16,32 +16,35 @@ int _printf(const char *format, ...)
 	char c;
 
 	va_start(args, format);
-	while (*format != '\0')
+	while (*format)
 	{
 		if (*format == '%')
 		{
 			format++;
-			switch (*format)
+		}
+		if (*format == '\0')
+		{
+			break;
+		}
+		if (*format == 'c')
+		{
+			c = va_arg(args, int);
+			write(1, &c, 1);
+			count++;
+		}
+		else if (*format == 's')
+		{
+			str = va_arg(args, char *);
+			while (*str)
 			{
-				case 'c':
-					c = va_arg(args, int);
-					write(1, &c, 1);
-					count++;
-					break;
-				case 's':
-					str = va_arg(args, char *);
-					while (*str != '\0')
-					{
-						write(1, str, 1);
-						str++;
-						count++;
-					}
-					break;
-				case '%':
-					write(1, "%", 1);
-					count++;
-					break;
+				write(1, str++, 1);
+				count++;
 			}
+		}
+		else if (*format == '%')
+		{
+			write(1, "%", 1);
+			count++;
 		}
 		else
 		{
