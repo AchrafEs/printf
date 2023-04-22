@@ -33,8 +33,8 @@ int _printf(const char *format, ...)
 					break;
 				case 's':
 					*str = va_arg(args1, const char *);
-					len = strlen(s);
-					write(STDOUT_FILENO, s, len);
+					len = strlen(str);
+					write(STDOUT_FILENO, str, len);
 					num_chars += len;
 					break;
 				case '%':
