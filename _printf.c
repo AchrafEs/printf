@@ -1,7 +1,6 @@
 #include "main.h"
 #include <stdarg.h>
 #include <stdio.h>
-#include <string.h>
 
 /**
  * _printf - a function that produces output according to a format.
@@ -44,10 +43,6 @@ int _printf(const char *format, ...)
 					c = '%';
 					putchar('%');
 					num_chars++;
-					break;
-				default:
-					putchar('%');
-					num_chars += 2;
 					break;
 			}
 		}
