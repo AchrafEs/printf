@@ -1,5 +1,6 @@
 #include "main.h"
 #include <stdarg.h>
+#include <unistd.h>
 
 /**
  * _printf - a function that produces output according to a format.
@@ -10,9 +11,7 @@
 int _printf(const char *format, ...)
 {
 	va_list args;
-	char *str;
 	int count = 0;
-	char c;
 
 	va_start(args, format);
 	while (*format)
@@ -20,28 +19,18 @@ int _printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
-			switch (*format)
+			if (*format == 'c')
 			{
-				case 'c':
-					c = (char)va_arg(args, int);
-					_printchar(c, &count);
-					break;
-				case 's':
-					str = va_arg(args, char *);
-					_printstr(str, &count);
-					break;
-				case '%':
-					_printchar('%', &count);
-					break;
-				default:
-					_printchar('%', &count);
-					_printchar(*format, &count);
-					break;
+				count += _printchar(args);
+			}
+			else if (*format == 's')
+			{
+				count += _printstr(args);
 			}
 		}
 		else
 		{
-			_printchar(*format, &count);
+			count += write(1, format, 1);
 		}
 		format++;
 	}
