@@ -1,22 +1,16 @@
 #include "main.h"
 #include <unistd.h>
-#include <stdarg.h>
 
 /**
  * _printstr - writes a string to stdout
- * @args: A va_list containing the string to print
- *
- * Return: The number of characters printed
+ * @str: the string to print
+ * @count: a pointer to the count of printed characters
  */
-int _printstr(va_list args)
+void _printstr(char *str, int *count)
 {
-	char *str = va_arg(args, char *);
-	int count = 0;
-
 	while (*str)
 	{
-		count += write(1, str, 1);
-		str++;
+		write(1, str++, 1);
+		(*count)++;
 	}
-	return (count);
 }
