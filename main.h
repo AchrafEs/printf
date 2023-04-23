@@ -1,8 +1,9 @@
 #ifndef _MAIN_H_
 #define _MAIN_H_
+#include <stdarg.h>
 
 int _printf(const char *format, ...);
-void _printchar(char c, int *count);
-void _printstr(char *str, int *count);
+int _printchar(va_list args);
+int _printstr(va_list args);
 
 #endif
