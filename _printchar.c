@@ -1,13 +1,17 @@
 #include "main.h"
 #include <unistd.h>
+#include <stdarg.h>
 
 /**
  * _printchar - writes a character to stdout
- * @c: the character to print
- * @count: a pointer to the count of printed characters
+ * @args: A va_list containing the character to print
+ *
+ * Return: The number of characters printed
  */
-void _printchar(char c, int *count)
+int _printchar(va_list args)
 {
-	write(1, &c, 1);
-	(*count)++;
+	char c;
+
+	c = va_arg(args, int);
+	return (write(1, &c, 1));
 }
