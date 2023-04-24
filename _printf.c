@@ -14,15 +14,19 @@ int _printf(const char *format, ...)
 	va_list args;
 	int count = 0;
 	size_t len;
-	char *str;
+	const char *str;
 
 	va_start(args, format);
-
 	while (*format)
 	{
 		if (*format == '%')
 		{
 			format++;
+			if (*format == '\0')
+			{
+				va_end(args);
+				return -1;
+			}
 			switch (*format)
 			{
 				case 'c':
@@ -30,7 +34,11 @@ int _printf(const char *format, ...)
 					break;
 				case 's':
 					str = va_arg(args, char *);
-					len = strlen(str);
+					len = _strlen(str);
+					if (str == NULL)
+					{
+						str = "(null)";
+					}
 					count += write(1, str, len);
 					break;
 				case '%':
