@@ -24,9 +24,8 @@ int _printf(const char *format, ...)
 			format++;
 			if (*format == 'c')
 			{
-				int ch = va_arg(ars, int);
-				putchar(*str);
-				str++;
+				int ch = va_arg(args, int);
+				putchar(ch);
 				count++;
 			}
 			else if (*format == 's')
