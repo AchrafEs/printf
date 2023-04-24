@@ -11,7 +11,7 @@
  *  Return: always 0.
  */
 
-int main()
+int main(void)
 {
 	int number1 = 9876;
 	int number2 = -6789;
@@ -19,5 +19,5 @@ int main()
 	printf("number1 using 'd' : %d\n", number1);
 	printf("number2 using 'i' : %i\n", number2);
 
-	return 0;
+	return (0);
 }
