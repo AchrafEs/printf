@@ -29,9 +29,7 @@ int _printf(const char *format, ...)
 					str = va_arg(args, char *);
 					len = 0;
 					while (str[len])
-					{
 						len++;
-					}
 					count += _write_str(str, len);
 					break;
 				case '%':
