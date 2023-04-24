@@ -56,10 +56,3 @@ int _printf(const char *format, ...)
 
 	return count;
 }
-
-int main(void)
-{
-	int count = _printf("Hello, %s! Today is %c.\n", "world", 'Y');
-	printf("Total characters printed is: %d\n", count);
-	return (0);
-}
