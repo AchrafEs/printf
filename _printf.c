@@ -10,8 +10,9 @@
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int count = 0, len;
+	int count = 0;
 	char *str;
+	char c;
 
 	va_start(args, format);
 	while (*format)
@@ -22,27 +23,30 @@ int _printf(const char *format, ...)
 			switch (*format)
 			{
 				case 'c':
-					count += _putchar(va_arg(args, int));
+					c = va_arg(args, int);
+					_putchar(c);
+					count++;
 					break;
 				case 's':
 					str = va_arg(args, char *);
-					len = 0;
-					while (str[len])
-						len++;
-					count += _write_str(str, len);
-					break;
-				case '%':
-					count += _putchar('%');
+					while (str)
+					{
+						_putchar(*str);
+						str++;
+						count++;
+					}
 					break;
 				default:
-					count += _putchar('%');
-					count += _putchar(*format);
+					_putchar('%');
+					_putchar(*format);
+					count += 2;
 					break;
 			}
 		}
 		else
 		{
-			count += _putchar(*format);
+			_putchar(*format);
+			count++;
 		}
 		format++;
 	}
