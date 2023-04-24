@@ -1,13 +1,15 @@
-#include <unistd.h>
+#include <stdio.h>
 
 /**
  * _putchar - writes the character c to stdout
  * @c: The character to print
+ * @count: the count.
  *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
+ * Return: the printed character.
  */
-int _putchar(char c)
+int _putchar(int c, int *count)
 {
-	return (write(1, &c, 1));
+	putchar(c);
+	(*count)++;
+	return (*count);
 }
