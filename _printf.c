@@ -20,6 +20,11 @@ int _printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
+			if (*format == '\0')
+			{
+				va_end(args);
+				return (-1);
+			}
 			switch (*format)
 			{
 				case 'c':
@@ -36,15 +41,12 @@ int _printf(const char *format, ...)
 					count += _putchar('%');
 					break;
 				default:
-					count += _putchar('%');
-					count += _putchar(*format);
-					break;
+					va_end(args);
+					return (-1);
 			}
 		}
 		else
-		{
 			count += _putchar(*format);
-		}
 		format++;
 	}
 	va_end(args);
