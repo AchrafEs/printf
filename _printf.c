@@ -25,12 +25,14 @@ int _printf(const char *format, ...)
 			if (*format == 'c')
 			{
 				int ch = va_arg(args, int);
+
 				putchar(ch);
 				count++;
 			}
 			else if (*format == 's')
 			{
 				char *str = va_arg(args, char*);
+
 				while (*str != '\0')
 				{
 					putchar(*str);
@@ -51,8 +53,6 @@ int _printf(const char *format, ...)
 		}
 		format++;
 	}
-
 	va_end(args);
-
-	return count;
+	return (count);
 }
