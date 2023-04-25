@@ -1,7 +1,7 @@
 #include "main.h"
 
 /*
- * print_char 
+ * print_char
  * @types
  * @buffer
  * @flags
@@ -86,11 +86,11 @@ int print_string(va_list types, char buffer[], int flags, int width, int percisi
 int print_percent(va_list types, char buffer[], int flags, int width, int percision, int size)
 {
 	UNUSED(types);
-       	UNUSED(buffer);
-        UNUSED(flags);
-        UNUSED(width);
-        UNUSED(percision);
-        UNUSED(size);
+	UNUSED(buffer);
+	UNUSED(flags);
+	UNUSED(width);
+	UNUSED(percision);
+	UNUSED(size);
 	return (write(1, "%%", 1));
 }
 
@@ -115,7 +115,7 @@ int print_int(va_list types, char buffer[], int flags, int width, int percision,
 
 	if (n == 0)
 		buffer[i--] = '0';
-	
+
 	buffer[BUFF_SIZE - 1] = '\0';
 	num = (unsigned long int n);
 
@@ -151,13 +151,12 @@ int print_binary(va_list types, char buffer[], int flags, int width, int percisi
 	unsigned int n, m, i, sum;
 	unsigned int a[32];
 	int count;
-
 	UNUSED(types);
-        UNUSED(buffer);
-        UNUSED(flags);
-        UNUSED(width);
-        UNUSED(percision);
-        UNUSED(size);
+	UNUSED(buffer);
+	UNUSED(flags);
+	UNUSED(width);
+	UNUSED(percision);
+	UNUSED(size);
 
 	n = va_arg(types, unsigned int);
 	m = 2147483648;
