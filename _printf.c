@@ -10,7 +10,7 @@
 int _printf(const char *format, ...)
 {
 	va_list ap;
-	int count = 0;
+	int count = 0, i = 0;
 
 	va_start(ap, format);
 	while (*format)
@@ -30,7 +30,12 @@ int _printf(const char *format, ...)
 					print_wchar(va_arg(ap, wchar_t), &count);
 					break;
 				case 'S':
-					print_wstr(va_arg(ap, wchar_t *), &count);
+					if (format[i] == '%' && format[i + 1] == 'S')
+					{
+						print_wstr(va_arg(ap, wchar_t *), &count);
+						i += 2;
+						continue;
+					}
 					break;
 				default:
 					if (*format)
