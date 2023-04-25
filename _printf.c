@@ -2,48 +2,47 @@
 #include <stdarg.h>
 
 /**
- * _printf - A function that produces output according to a format.
- * @format: the character string.
+ * _printf - A Custom implementation of printf.
+ * @format: the String containing the format specifier and data.
+ * @...: Variable arguments list.
  *
- * Return: the number of characters printed.
+ * Return: Number of bytes written.
  */
 int _printf(const char *format, ...)
 {
-	va_list ap;
-	int count = 0;
+	char buffer[BUFF_SIZE];
+	int printed_chars = 0, buffer_size = 0;
+	va_list args;
+	int ret;
 
-	va_start(ap, format);
-	while (*format)
+	va_start(args, format);
+	while (*format != '\0')
 	{
 		if (*format == '%')
 		{
 			format++;
-			switch (*format)
-			{
-				case 'c':
-					_putchar(va_arg(ap, int), &count);
-					break;
-				case 's':
-					print_str(va_arg(ap, char *), &count);
-					break;
-				case 'C':
-					print_wchar(va_arg(ap, wchar_t), &count);
-					break;
-				case 'S':
-					print_wstr(va_arg(ap, wchar_t *), &count);
-					break;
-				default:
-					if (*format)
-						_putchar(*format, &count);
-					break;
-			}
+			ret = handle_conversion(&format, &args, buffer, &buffer_size);
+			if (ret == -1)
+				return (-1);
+			printed_chars += ret;
 		}
 		else
 		{
-			_putchar(*format, &count);
+			buffer[buffer_size] = *format;
+			buffer_size++;
+			printed_chars++;
+		}
+		if (buffer_size == BUFF_SIZE)
+		{
+			print_buffer(buffer, buffer_size);
+			buffer_size = 0;
 		}
 		format++;
 	}
-	va_end(ap);
-	return (count);
+	va_end(args);
+	if (buffer_size > 0)
+	{
+		print_buffer(buffer, buffer_size);
+	}
+	return (printed_chars);
 }
