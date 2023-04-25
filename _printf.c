@@ -33,7 +33,6 @@ int _printf(const char *format, ...)
 					print_wstr(va_arg(ap, wchar_t *), &count);
 					break;
 				default:
-					_putchar('%', &count);
 					if (*format)
 						_putchar(*format, &count);
 					break;
