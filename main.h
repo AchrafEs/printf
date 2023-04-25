@@ -2,7 +2,7 @@
 #define _MAIN_H_
 #include <stddef.h>
 
-#define BUF_SIZE 256
+#define BUF_SIZE 1024
 
 int _printf(const char *format, ...);
 int _putchar(int c, int *count);
