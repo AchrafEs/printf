@@ -19,7 +19,7 @@
 #define S_SHORT 1
 
 /*
- * this is qtruct fmt - struct
+ * struct fmt - struct
  * @fmt: format.
  * @fn: function associated.
  */

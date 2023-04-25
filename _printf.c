@@ -1,22 +1,32 @@
 #include "main.h"
+#include <unistd.h>
+
+void print_buffer(char buffer[], int *buff_ind);
+
+/**
+ * print_buffer - A function that prints a buffer.
+ * @buffer: chars's array
+ * @buff_ind: add next char to index, represent lenght
+ *
+ * Return: Nothing.
+ */
+void print_buffer(char buffer[], int *buff_ind)
+{
+	if (*buff_ind > 0)
+		 write(1, &buffer[0], *buff_ind);
+	*buff_ind = 0;
+}
 
 /**
  * _printf - function printf
- *
  * @format: function that produces output according to a format.
  *
- * Return: chars that are printed.
+ * Return: the printed characters.
  */
-
 int _printf(cont char *format, ...)
 {
-	int i;
-	int printed = 0;
-	int printed_chars = 0;
-	int flags;
-	int width;
-	int percision;
-	int size;
+	int i, printed = 0, printed_chars = 0;
+	int flags, width, percision, size;
 	int buff_ind = 0;
 	va_list list;
 	char buffer[BUFF_SIZE];
@@ -51,21 +61,6 @@ int _printf(cont char *format, ...)
 	}
 
 	print_buffer(buffer, &buff_ind);
-
 	va_end(list);
-
 	return (printed_chars);
-}
-
-/*
- * print_buffer - if there is any contents of the buffer print it.
- * @buffer: chars's array
- * @buff_ind: add next char to index, represent lenght
- */
-
-void print_buffer(char buffer[], int *buff_ind)
-{
-	if (*buff_ind > 0)
-		write(1, &buffer[0], *buff_ind);
-	*buff_ind = 0;
 }
